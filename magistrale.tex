@@ -1,4 +1,17 @@
 \chapter{Magistrale szeregowe}
+Magistrala jest to układ linii, po których przekazywane są wszystkie informacje pomiędzy podłączonymi do niej urządzeniami, np. komputerem, czujnikiem, regulatorem itp. Zasada działania magistrali opiera się na uzyskiwaniu oraz nadawaniu współpracującym częściom uprawnień do transmisji danych w danej jednostce czasu. W jednej chwili, w magistrali może działać tylko jedno urządzenie nadające oraz dowolna liczba odbiorców. Systemy o budowie opartej na magistrali są łatwo modyfikowalne oraz rozszerzalne, w prosty sposób można dołączyć lub odłączyć elementy systemu.
+Dane przesyłane na dużą odległość najlepiej jest przekazywać transmisją szeregową, na krótsze odległości, przesyłanie równoległe oraz szeregowe daje podobne rezultaty.
+Bity oraz całe słowa w tej komunikacji przesyłane są jeden po drugim. Przy takim sposobie łączenia się wystarczą tylko dwa przewody łączące odbiorcę z urządzeniem nadającym. 
+
+Przykład urządzenia w magistrali szeregowej został przedstawiony na poniższym schemacie:
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.5]{magistrala}
+\caption{Schemat magistrali szeregowej}
+\label{fig:magistrala}
+\end{figure}
+
+Jak widać na załączonym rysunku, można podłączyć do magistrali wiele urządzeń. Wszystkie są podłączone do jednej lini danych, na której odbywa się komunikacja. To właśnie przez nią przesyłane są wszystkie dane pomiędzy elementami magistrali.
 
 \section{Magistrala $\mathbf{I^{2}C}$}
 Nazwa jest to akronimem od Inter-Intergrated Circuit. Standard został opracowany w latach osiemdziesiątych przez firmę Philips.
@@ -10,3 +23,13 @@ Zaletami magistrali $I^{2}C$ są niewątpliwie takie właściwośći jak: odporn
 Magistrala $I^{2}C$ posiada dwie dwukierunkowe linie: dane są przesyłane przez Serial Data (SDA), natomiast sygnał zegara na Serial Clock (SCL). 
 
 \section{Magistrala One-Wire}
+
+Magistrala 1-Wire jest to jednoprzewodowy interfejs szeregowy, który został opracowany przez firmę Dallas Semiconductors. W założeniach miał on umożliwiać łączność pomiędzy urządzeniami na małe odległości. Do magistrali tego typu również można podłączyć dowolnie wiele urządzeń eleketronicznych. Jego największą zaletą jest fakt, że dane są wysyłane w obie strony, przy zastosowaniu tylko jednego przewodu, który również służy za zasilanie magistrali, dodatkowo wymagana jest osobna linia prowadząca do masy. Schemat podłączenia interfejstu One-Wire został zamieszczony poniżej:
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.5]{1wire}
+\caption{Schemat magistrali 1-Wire}
+\label{fig:1wire}
+\end{figure}
+
+Magistrala, do poprawnego działania, wymaga rezystora podciągającego około 4,7~$\Omega$ do zasilania.
