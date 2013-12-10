@@ -3,5 +3,21 @@
 \section{Serwer HTTP}
 
 \section{Baza danych MySQL}
+Pomiary ze stworzonej stacji pogodowej zostają wysyłane nieustannie, w trakcie działania programu, do bazy danych MySQL. Znajduje się ona na serwerze AGH i została skonfigurowana poprzez stronę http://mysql.agh.edu.pl. Baza przechowuje wartości wszystkich zmierzonych parametrów meteorologicznych od pierwszego uruchomienia stacji pogody.
+
+Struktura bazy danych jest prosta, posiada ona tabelę o nazwie "weather\_station". To właśnie w niej bezpośrednio przechowywane są wartości pomiarowe.
+
+Składa się ona z sześciu kolumn:
+\begin{enumerate}
+\item godzina wykonania pomiaru i wysłania do bazy
+\item data
+\item temperatura z czujnika DHT-22
+\item wilgotność z czujnika DHT-22
+\item temperatura z czujnika BMP085
+\item ciśnienie z czujnika BMP085
+\end{enumerate}
 
 \section{Interfejs użytkownika}
+Strona internetowa, która została stworzona specjalnie do wizualizacji wyników ma bardzo prosty i intuicyjny interfejs użytkownika.
+
+Główną jego częścią są ostatnie wskazania z czujników. Poniżej tych znajduje się wykres historii pomiarów każdego parametru. Wykres jest dowolnie konfigurowalny, użytkownik może wybrać, które wartości mają zostać pokazane, a które mają być ukryte. Dodatkowym udogodnieniem jest możliwość regulowania zakresem daty, w którym mają zostać pokazane pomiary.
