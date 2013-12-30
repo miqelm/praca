@@ -1,5 +1,7 @@
 \chapter{Przechowywanie oraz wyświetlanie wyników}
 
+Pobrane oraz przeanalizowane dane z czujników, poprzez stację bazową zostają przeniesione do zewnętrznej bazy danych. Tą bazą jest najpopularniejsza baza danych MySQL. Przy każdej iteracji pętli odczytującej wartości pomiarowe, dane są wysyłane do bazy.
+
 \section{Baza danych MySQL}
 Pomiary ze stworzonej stacji pogodowej zostają wysyłane nieustannie, w trakcie działania programu, do bazy danych MySQL. Znajduje się ona na serwerze AGH i została skonfigurowana poprzez stronę http://mysql.agh.edu.pl. Baza przechowuje wartości wszystkich zmierzonych parametrów meteorologicznych od pierwszego uruchomienia stacji pogody.
 
