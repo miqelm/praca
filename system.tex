@@ -1,1 +1,34 @@
 \chapter{Elektroniczny system pomiarów}
+Układ pomiarowy składa się z wcześniej przedstawionych urządzeń:
+
+\begin{enumerate}
+\item mikrokomputer BeagleBone Black
+\item czujnik ciśnienia i temperatury BMP085
+\item czujnik wilgotności i temperatury DHT-22
+\end{enumerate}
+
+Kolejnym krokiem przy tworzeniu systemu pomiarów warunków środowiskowych i meteorologicznych jest poprawne podłączenie czujników do mikrokomputera, aby móc zbierać dane. Wykorzystując tabelę PINów, zainstalowanych w mikrokomputerze BeagleBone Black, podpięto czujniki według poniższej instrukcji:
+
+\textbf{Czujnik BMP085:}
+\begin{itemize}
+\item GND należy podłączyć do pinu P9.1 BeagleBone'a
+\item VCC do pinu P9.3
+\item SCL do pinu P9.19
+\item SDA do pinu P9.20
+\end{itemize}
+
+\textbf{Czujnik DHT-22:}
+\begin{itemize}
+\item GND należy podłączyć do pinu P9.2 BeagleBone'a
+\item VDD do pinu P9.8
+\item DATA do pinu P8.26
+\end{itemize}
+
+\begin{figure}[h]
+\centering
+\includegraphics{uklad}
+\caption{Zbudowany układ pomiarowy}
+\label{fig:uklad}
+\end{figure}
+
+Sposób poprawnego podpięcia układu został również zamieszczony poniżej w formie rysunku (rys. \ref{fig:uklad}).

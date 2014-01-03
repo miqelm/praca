@@ -1,8 +1,9 @@
 \chapter{Przechowywanie oraz wyświetlanie wyników}
 
-Pobrane oraz przeanalizowane dane z czujników, poprzez stację bazową zostają przeniesione do zewnętrznej bazy danych. Tą bazą jest najpopularniejsza baza danych MySQL. Przy każdej iteracji pętli odczytującej wartości pomiarowe, dane są wysyłane do bazy.
+Pobrane dane z czujników muszą być przechowane, aby mogły być później odczytane i przeanalizowane. Jest kilka sposobów na gromadzenie danych, najczęściej używanymi jest korzystanie z plików tekstowych lub baz danych. W projekcie inżynierskim wykorzystana została baza danych MySQL. 
 
 \section{Baza danych MySQL}
+MySQL jest systemem bazy danych opartych na strukturalnym języku zapytań SQL. Używa on tego języka do zapisywania oraz pobierania informacji, zarówno z, jak i do bazy. 
 Pomiary ze stworzonej stacji pogodowej zostają wysyłane nieustannie, w trakcie działania programu, do bazy danych MySQL. Znajduje się ona na serwerze AGH i została skonfigurowana poprzez stronę http://mysql.agh.edu.pl. Baza przechowuje wartości wszystkich zmierzonych parametrów meteorologicznych od pierwszego uruchomienia stacji pogody.
 
 Struktura bazy danych jest prosta, posiada ona tabelę o nazwie "weather\_station". To właśnie w niej bezpośrednio przechowywane są wartości pomiarowe.
