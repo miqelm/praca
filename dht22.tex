@@ -17,7 +17,7 @@ Wygląd czujnika został przedstawiony na poniższym zdjęciu:
 Zgodnie ze specyfikacją, załączoną do DHT-22, linia danych jest wolna, jeżeli jest na niej ustawiony stan wysoki. Czujnik, gdy nie jest używany, jest ustawiony w tryb spoczynku i niskiego poboru prądu. Poprzez wysłanie sygnału startu jest on wybudzany do trybu pracy i wysyła dane. Aby rozpocząć pomiar trzeba wysłać sygnał startu, należy to uczynić poprzez zwarcie do masy linii danych na conajmniej 18 ms. Po tym czasie czujnik zgłasza swoją obecność w układzie poprzez wystawienie logicznej jedynki na około 20-40 $\mu$s, następnie linia danych jest zwalniana oraz ponownie podciągana do zasilania, każdy z tych czynności trwa 80 $\mu$s. Poniższy rysunek przedstawia inicjalizację czujnika DHT-22.
 \begin{figure}[h]
 \centering
-\includegraphics[scale=0.6]{inicjalizacja_dht}
+\includegraphics[scale=0.35]{inicjalizacja_dht}
 \caption{Inicjalizacja czujnika}
 \label{fig:inicjalizacja_dht}
 \end{figure}
@@ -30,13 +30,14 @@ Sposób kodowania informacji na linii danych przez DHT-22 jest następujący: ka
 Przebiegi poniżej pokazują wysyłanie danych:
 \begin{figure}[h]
 \centering
-\includegraphics[scale=0.6]{zero_dht}
+\includegraphics[scale=0.3]{zero_dht}
 \caption{Wysłanie logicznego "0"}
 \label{fig:zero_dht}
 \end{figure}
+
 \begin{figure}[h]
 \centering
-\includegraphics[scale=0.6]{jedynka_dht}
+\includegraphics[scale=0.3]{jedynka_dht}
 \caption{Wysłanie logicznej "1"}
 \label{fig:jedynka_dht}
 \end{figure}
@@ -50,6 +51,12 @@ Algorytm zastosowany przy tworzeniu projektu inżynierskiego jest bardzo prosty.
 
 Linia danych jest próbkowana do momentu odczytania 40 bitów. Jest ona ustawiana wówczas w stan wysoki, czujnik przechodzi w stan spoczynku. Po zakończeniu odczytu następuje analiza przetworzonych danych.
 
-Ilości wystąpień każdego stanu wysokiego podlegają binaryzacji, czyli procesowi podziału na dwa zbiory. Zadaniem tej funkcjonalności jest znalezienie odpowiedniej wartości granicznej, takiej która jednoznacznie wyznacza ile razy musiał być spróbkowany sygnał na linii danych, aby został on zinterpretowany jako bit "1" lub "0". Zostało to zaimplementowane poprzez znalezienie minimalnej i maksymalnej wartości ilości wystąpień oraz wyliczniu średniej tych dwóch liczb, wynik tego działania był wartością progową przy binaryzacji.
+Ilości wystąpień każdego stanu wysokiego podlegają binaryzacji, czyli procesowi podziału na dwa zbiory. Zadaniem tej funkcjonalności jest znalezienie odpowiedniej wartości granicznej, takiej która jednoznacznie wyznacza ile razy musiał być spróbkowany sygnał na linii danych, aby został on zinterpretowany jako bit $"1"$ lub $"0"$. Zostało to zaimplementowane poprzez znalezienie minimalnej i maksymalnej wartości ilości wystąpień oraz wyliczniu średniej tych dwóch liczb, wynik tego działania był wartością progową przy binaryzacji.
 
-Po wyliczeniu progu binaryzacji, ilości wystąpień zostały poddane porównaniu z nią. Jeżeli ilość wystąpień była większa od progu, oznaczało to bit "1", w przeciwnym wypadku, było to kodowane jako "0". 
+Po wyliczeniu progu binaryzacji, ilości wystąpień zostały poddane porównaniu z nią. Jeżeli ilość wystąpień była większa od progu, oznaczało to bit "1", w przeciwnym wypadku, było to kodowane jako "0".
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.6]{diagram_dht22}
+\caption{Diagram odczytu danych z czujnika DHT-22}
+\label{fig:diagram_dht22}
+\end{figure}
