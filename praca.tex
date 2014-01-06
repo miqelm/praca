@@ -1,16 +1,16 @@
-\documentclass[pdflatex,12pt]{aghdpl}
-%\documentclass{aghdpl}               % przy kompilacji programem latex
-% \documentclass[pdflatex,en]{aghdpl}  % praca w języku angielskim
+\documentclass[12pt]{aghdpl}
+% \documentclass[en,11pt]{aghdpl}  % praca w języku angielskim
 \usepackage[polish]{babel}
+%\usepackage[english]{babel}
 \usepackage[utf8]{inputenc}
 \usepackage{graphicx}
 \usepackage[section]{placeins}
 \graphicspath{ {./obrazy/} }
+\makeatletter\@openrightfalse\makeatother
 
 % dodatkowe pakiety
 \usepackage{enumerate}
 \usepackage{listings}
- 
 \lstloadlanguages{TeX}
 
 \lstset{
@@ -23,7 +23,7 @@
            {ś}{{\'s}}1
            {ź}{{\'z}}1
            {ż}{{\.z}}1
-           {Ą}{{\k{A}}}
+           {Ą}{{\k{A}}}1
            {Ć}{{\'C}}1
            {Ę}{{\k{E}}}1
            {Ó}{{\'O}}1
@@ -42,7 +42,7 @@
 \titlePL{System pomiaru warunków środowiskowych i meteorologicznych}
 \titleEN{Measurment system of environmental and weather conditions}
 
-\shorttitlePL{System pomiaru warunków środowiskowych i meteorologicznych} % skrócona wersja tytułu je¶li jest bardzo długi
+\shorttitlePL{System pomiaru warunków środowiskowych i meteorologicznych} % skrócona wersja tytułu jeśli jest bardzo długi
 \shorttitleEN{Measurment system of environmental and weather conditions}
 
 \thesistypePL{Praca inżynierska}
@@ -51,17 +51,18 @@
 \supervisorPL{dr inż. Marek Stencel}
 \supervisorEN{Marek Stencel Sc.D}
 
+\degreeprogrammePL{Automatyka i Robotyka}
+\degreeprogrammeEN{Automatics and Robotics}
+
 \date{2013}
 
 \departmentPL{Katedra Automatyki i Inżynierii Biomedycznej}
 \departmentEN{Department of Automatics and Bioengineering}
 
-\facultyPL{Wydział Elektrotechniki, Automatyki, Informatyki i Inżynierii Biomedycznej}
-\facultyEN{Faculty of Electrical Engineering, Automatics, Computer Science and Biomedical Engineering}
+\facultyPL{Wydział Elektrotechniki, Automatyki,\protect\\[-1mm] Informatyki i Inżynierii Biomedycznej}
+\facultyEN{Faculty of Electrical Engineering, Automatics,\protect\\[-1mm] Computer Science and Biomedical Engineering}
 
 \acknowledgements{...}
-
-
 
 \setlength{\cftsecnumwidth}{10mm}
 
@@ -93,7 +94,7 @@
 
 \listoffigures
 % itd.
- \appendix
+% \appendix
 % \include{kod}
 % \include{dodatekB}
 % itd.
