@@ -8,7 +8,7 @@
 % 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\message{*** [aghdpl.cls] ---  (MSz, GJN)  v2.0 <19.11.2013>  ***}       
+\message{*** [aghdpl.cls] ---  (MSz, GJN)  v2.0 <6.01.2014>  ***}       
 
 \newif\ifpdflatex\pdflatexfalse
 \NeedsTeXFormat{LaTeX2e} % 
@@ -117,13 +117,13 @@ Supervisor: & {\itshape \@supervisorEN}\\
 
 \vspace*{25mm}
 
-\centerline{\small\sffamily Krak\'{o}w, \@date}
+\centerline{\small\sffamily Krak\'{o}w, 2014}
 
 \clearpage \titlepage 
 
 {~~}\vspace{20mm}
 
-{\large\itshape O\'swiadczam, \'swiadomy(-a) odpowiedzialno\'sci karnej za po\'swiadczenie nieprawdy, \.ze \mbox{niniejsz\k{a}} prac\k{e} dyplomow\k{a} wykona\l{}em(-am) osobi\'scie i samodzielnie i nie korzysta\l{}em(-am) ze \'zr\'ode\l{} innych ni\.z wymienione w pracy.}
+{\large\itshape O\'swiadczam, \'swiadomy odpowiedzialno\'sci karnej za po\'swiadczenie nieprawdy, \.ze \mbox{niniejsz\k{a}} prac\k{e} dyplomow\k{a} wykona\l{}em osobi\'scie i samodzielnie, i nie korzysta\l{}em ze \'zr\'ode\l{} innych ni\.z wymienione w pracy.}
 
 
 \clearpage \titlepage
@@ -160,7 +160,7 @@ Supervisor: & {\itshape \@supervisorEN}\\
 
 \vspace*{25mm}
 
-\centerline{\small\sffamily Krak\'{o}w, \@date}
+\centerline{\small\sffamily Krak\'{o}w, 2014}
 
 \clearpage \titlepage 
 

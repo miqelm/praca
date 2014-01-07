@@ -62,10 +62,11 @@
 \facultyPL{Wydział Elektrotechniki, Automatyki,\protect\\[-1mm] Informatyki i Inżynierii Biomedycznej}
 \facultyEN{Faculty of Electrical Engineering, Automatics,\protect\\[-1mm] Computer Science and Biomedical Engineering}
 
-\acknowledgements{...}
+\acknowledgements{}
 
 \setlength{\cftsecnumwidth}{10mm}
-
+\usepackage{caption2}
+\renewcommand{\captionlabeldelim}{.}
 %---------------------------------------------------------------------------
 
 \begin{document}
@@ -73,10 +74,12 @@
 
 \tableofcontents
 \clearpage
+%\addcontentsline{toc}{chapter}{Wstęp}
 
-\addcontentsline{toc}{chapter}{Wstęp}
+\setcounter{secnumdepth}{-1}
 \include{wstep}
-\include{badanie}
+\setcounter{secnumdepth}{3} % or some other value
+%\include{badanie}
 
 \include{BeagleBone}
 \include{bmp085}
@@ -92,7 +95,7 @@
 \include{podsumowanie}
 \include{bibliografia}
 
-\listoffigures
+%\listoffigures
 % itd.
 % \appendix
 % \include{kod}

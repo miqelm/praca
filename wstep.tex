@@ -1,1 +1,53 @@
-\chapter*{Wstęp}
+\chapter{Wstęp}
+\section*{Badanie warunków środowiskowych i meteorologicznych}
+Zbieranie informacji na temat aktualnych danych pogodowych zawsze było przydatne dla ludzkości, a nawet stało się bardzo ważne w dzisiejszych czasach. Różne przedsiębiorstwa z dziedziny automatyki, budownictwa, przemysłu itp. potrzebują tych danych, aby wiedzieć jak zorganizować swoją pracę oraz przewidzieć plan na najbliższą przyszłość. Posiadając aktualne pomiary pogodowe można zmienić plan pracy, jeżeli warunki atmosferyczne mogą na to nie pozwalić.
+
+Przykładowo przeprowadzenie naprawy sieci elektrycznej przy bardzo dużej wilgotności powietrza jest stosunkowo niebezpieczne, ponieważ mogą występować przepięcia, prowadzące do całkowitego jej uszkodzenia. Badanie temperatury otoczenia jest niezmiernie potrzebne przy instalacjach, które wymagają określonego przedziału ciepła, stosuje się je np. w chłodniach. Dzięki pomiarom temperatury można sterować regulatorem ogrzewania lub chłodzenia w celu uzyskania optymalnych i rekomendowanych warunków pracy urządzeń przemysłowych.
+
+Na podstawie aktualnych danych pogodowych wraz z historią pomiarów, przy zastosowaniu specjalnych algorytmów, można uzyskać z pewnym prawdopodobieństwem prognozę pogody na najbliższą przyszłość. Wyniki przewidywania pogody nigdy nie są idealne, ale pozwalają na przygotowanie się na możliwe warunki atmosferyczne.
+
+Pomiary warunków środowiskowych są nieodłącznym elementem wielu regulatorów automatyki zastosowanych, np. w klimatyzatorach, lodówkach, grzejnikach, nawilżaczach lub osuszaczach powietrza. Na ich podstawie wyliczane jest sterowanie, które następnie jest podawane na element wykonawczy, np. część chłodzącą. Pomiar aktualnej wartości jest nieustannie porównywany z wartością zadaną w cyklu działania urządzenia.
+
+Projekt inteligentnego domu, w którym niemal wszystko jest regulowane automatycznie, wymaga informacji o aktualnych warunkach i na tej podstawie ustawia poziom ogrzewania, nawilżania powietrza itd.
+
+Niniejszy projekt inżynierski ma za zadanie skonstruować w pełni funkcjonalną stację pogodową, która może być wykorzystywana w dowolnych warunkach. Badania meteorologiczne opisane w dalszej części pracy obejmują pomiar temperatury, wilgotności powietrza oraz ciśnienia atmosferycznego.
+
+System pomiarowy ma spełniać następujące wymagania:
+\begin{itemize}
+\setlength{\itemsep}{2pt} 
+\setlength{\parskip}{2pt} 
+\setlength{\parsep}{2pt}
+\item możliwość wykorzystania stacji zarówno wewnątrz jak i na zewnątrz budynku
+\item konfigurowalność okresu próbkowania
+\item przechowywanie danych w bazie
+\item wyświetlanie zmierzonych danych w postaci wykresu oraz aktualnych wartości
+\item konfigurowalność przedziału wyświetlanych danych
+\end{itemize}
+\section*{Plan pracy}
+Praca składa się z następujących rozdziałów:
+
+Rozdział 1 \textit{Mikrokomputer BeagleBone Black} opisuje główną część układu pomiarowego - mikrokomputer, dzięki któremu możliwe jest uruchomienie całej aplikacji oraz pomiar warunków armosferycznych. Informuje również o parametrach procesora, dostępnych interfejsach oraz konfiguracji oprogramowania.
+
+
+Rozdział 2 \textit{Czujnik ciśnienia atmosferycznego BMP085} przedstawia jeden z elementów stacji pogodowej, przy użyciu którego dostarczane są informacje na temat panującego wokół ciśnienia oraz temperatury otoczenia. Dodatkowo opisane zostały cechy charakterystyczne danego urządzenia oraz sposób odczytu pomiarów.
+
+
+Rozdział 3 \textit{Czujnik wilgotnośni DHT-22} zajmuje się opisem czujnika wilgotności, opisuje jego dane charakterystyczne, możliwości, sposób komunikacji. Przedstawia również algorytm odczytu danych.
+
+
+Rozdział 4 \textit{Elektroniczny system pomiarów} jest fragmentem pracy, w którym zaprezentowany jest projekt całego układu pomiarowego, przedstawiony zostaje schemat połączeń pomiędzy mikrokomputerem a czujnikami.
+
+
+Rozdział 5 \textit{Komunikacja w układzie} przedstawia sposoby komunikacji pomiędzy każdym elementem stacji pogody. Zaprezentowane zostają interfejsy oraz magistrale użyte przy komunikowaniu się czujników z mikrokomputerem.
+
+
+Rozdział 6 \textit{Programowanie mikrokontrolerów ARM} opisuje w jaki sposób zostaje programowany BeagleBone, zostaje również przedstawione środowisko programowania oraz zalety używania systemu operacyjnego Linux do łatwego wgrywania programu pomiarowego i komunikowania się z czujnikami.
+
+
+Rozdział 7 \textit{Tworzenie aplikacji zbierającej dane pomiarowe} stanowi o sposobie projektowania programu odczytującego pomiary oraz prezentuje diagram projektowy aplikacji.
+
+
+Rozdział 8 \textit{Przechowywanie oraz wyświetlanie wyników} przedstawia sposób w jaki dane są gromadzone w bazie danych oraz jak są wyświetlane użytkownikowi chcącemu zobaczyć zmiany parametrów meteorologicznych.
+
+
+Rozdział 9 \textit{Rezultaty pomiarów} podsumowuje oraz jest odpowiedzialny za testy stworzonego układu pomiarowego wraz z aplikacją. Pokazuje zmierzone dane oraz historię ich zmian w różnych środowiskach.
