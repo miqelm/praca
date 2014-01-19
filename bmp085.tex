@@ -1,18 +1,20 @@
 \chapter{Czujnik ciśnienia atmosferycznego BMP085}
 \section*{Opis}
-Czujnik ten jest wysoce precyzyjnym, cyfrowym czujnikiem ciśnienia oraz temperatury powietrza. Jego energooszczędność oraz niskie zapotrzebowanie na zasilanie napięciem (do 3,6 V) sprawia, że jest idealnym rozwiązaniem do zastosowań w urządzeniach mobilnych codziennego użytku, tak jak telefony komórkowe, nawigacje GPS itd. Dzięki bardzo szybkiemu czasowi      przetwarzania danych (do 7,5 ms) oraz niskiemu wpływowi zakłóceń daje rezultaty, niewiele różniące się od warunków mierzonych.
+Czujnik ten jest wysoce precyzyjnym, cyfrowym czujnikiem ciśnienia oraz temperatury powietrza. Jego energooszczędność oraz niskie zapotrzebowanie na zasilanie napięciem (do 3,6 V) sprawia, że jest idealnym rozwiązaniem do zastosowań w urządzeniach mobilnych codziennego użytku, tak jak telefony komórkowe, nawigacje GPS itd. Dzięki bardzo szybkiemu czasowi      przetwarzania danych (do 7,5 ms) oraz niskiemu wpływowi zakłóceń pozwala na precyzyjny pomiar ciśnienia i temperatury.
 
 
-BMP085 jest często używany w prognozowaniu pogody, ze względu na obecność dwóch czujników (ciśnienia i temperatury). Można go również wykorzystać do wyznaczenia wysokości względnej oraz bezwzględnej od poziomu morza. W tym celu używane jest prawo zależności wysokości od ciśnienia, tzw. wzór barometryczny. Po uproszczeniu wygląda on następująco:
-$$ wysokosc = 44330 * (1- (\frac{p}{p_{0}})^{\frac{1}{5,255}}) $$
+BMP085 jest często używany w prognozowaniu pogody, ze względu na obecność dwóch czujników (ciśnienia i temperatury). Można go również wykorzystać do wyznaczenia wysokości względnej oraz bezwzględnej od poziomu morza. W tym celu należy wykorzystać wzór znajdujący się w specyfikacji czujnika, który wygląda następująco:
+$$ wysokosc = 44330 * (1- (\frac{p}{p_{0}})^{\frac{1}{5,255}})$$
 $ p $ - ciśnienie na badanej wysokości\newline
 $ p_{0} $ - ciśnienie na poziomie odniesienia
 \newline
 
+Obliczona wartość jest podawana w metrach.
+
 Znając wartość ciśnienia na poziomie odniesienia, istnieje możliwość wyznaczenia względnej wysokości ciała nad znaną wysokością bazową. Taka własność ciśnienia jest używana na lotniskach, samolot w momencie lądowania jest informowany o ciśnieniu panującym na lotnisku, piloci znają również ciśnienia panujące wokół samolotu. Na tej podstawie wyznaczana jest względna wysokość maszyny od poziomu pasa startowego.
 
 \section*{Dane charakterystyczne}
-Czujnik BMP085, zgodnie ze specyfikacją, może pracować bezpiecznie w przedziale temperatur od -40 do +85 $^\circ$C. Rozdzielczość pomiarów dla ciśnienia atmosferycznego wynosi 0.01 hPa, natomiast dla temperatury jest to 0.1 $^\circ$C. Dokładność badania ciśnienia to maksymalnie +- 4 hPa, dla temperatury to +- 2$^\circ$C.
+Czujnik BMP085, zgodnie ze specyfikacją, może pracować bezpiecznie w przedziale temperatur od -40 do +85 $^\circ$C. Rozdzielczość pomiarów ciśnienia atmosferycznego wynosi 0.01 hPa, natomiast temperatury 0.1 $^\circ$C. Maksymalne błędy pomiaru ciśnienia to +- 4 hPa, temperatury to +- 2$^\circ$C.
 
 Zdjęcia \ref{fig:bmp085_dol} oraz \ref{fig:bmp085_gora} prezentują wygląd czujnika wbudowanego w gotowy układ, z wyprowadzonymi złączami do komunikacji z mikrokontrolerami. Taki moduł został wykorzystany w projekcie inżynierskim.
 \begin{figure}[h]
@@ -31,14 +33,14 @@ Zdjęcia \ref{fig:bmp085_dol} oraz \ref{fig:bmp085_gora} prezentują wygląd czu
 Pomiar temperatury oraz ciśnienia jest kompensowany przy użyciu danych kalibracyjnych, które przechowywane są w pamięci EEPROM czujnika.
 
 \section*{Pobieranie danych z czujnika}
-BMP085 jest przystosowany do łączności za pomocą magistrali $I^2C$ (magistrala ta zostanie szerzej omówiona w późniejszych rozdziałach). Potrzebuje on do poprawnego działania czterach przewodów: zasilania, uziemienia, linii danych SDA oraz linii zegara SCL. Linie SCL i SDA wymagają podpięcia rezystora podciągającego do zasilania o oporze 4,7~$k\Omega$. Zastosowany w pracy czujnik jest zbudowany na gotowej płytce drukowanej z podpiętymi już rezystorami podciągającymi, dzięki temu jest on od razu przygotowany do podpięcia kablami, bez dodatkowego montowania układu.
+BMP085 jest przystosowany do łączności za pomocą magistrali $I^2C$ (magistrala ta zostanie szerzej omówiona w późniejszych rozdziałach). Potrzebuje on do poprawnego działania czterach przewodów: dwóch przewodów zasilania, linii danych SDA oraz linii zegara SCL. Linie SCL i SDA wymagają dołączenia rezystora podciągającego do zasilania o oporze 4,7~$k\Omega$. Zastosowany w pracy czujnik jest zbudowany na gotowej płytce drukowanej z dołączonymi już rezystorami podciągającymi, dzięki temu jest on od razu przygotowany do podłączenia przewodów, bez dodatkowego montowania układu.
 
-Czujnik podpięty do magistrali $I^2C$ otrzymuje adres, pod którym on się znajduje w strukturze. BMP085 domyślnie posiada adres 0x68 i przy użyciu tego adresu można odczytywać oraz zapisywać do niego dane.
+Czujnik dołączony do magistrali $I^2C$ otrzymuje adres, pod którym jest on widziany przez procesor. BMP085 domyślnie posiada adres 0x68 i przy użyciu tego adresu można odczytywać oraz zapisywać do niego dane.
 
 \section*{Algorytm odczytu pomiarów}
-Cały algorytm służący do oczytania aktualnych wartości warunków meteorologicznych wymaga odczytania rejestrów czujnika BMP085 za pośrednictwem magistrali $I^2C$. Z poziomu języka C oraz systemu Linux najpierw należy otworzyć plik, który jest reprezentacją magistrali i na nim wykonywać operacje odczytu oraz zapisu. Kolejną czynnością jaką należy wykonać jest oznajmienie systemowi, że pod konkretnym adresem znajduje się czujnik i jest on uważany za urządzenie typu \emph{slave}, czyli typu podrzędnego - słucha komend mikrokomputera. Następnie należy odczytać z pamięci EEPROM czujnika dane kalibracyjne, które zostają później wykorzystane do przeliczenia poprawnych wartości pomiarów.
+Cały algorytm służący do oczytania aktualnych wartości warunków meteorologicznych wymaga odczytania rejestrów czujnika BMP085 za pośrednictwem magistrali $I^2C$. Z poziomu języka C oraz systemu Linux najpierw należy otworzyć plik, który jest reprezentacją magistrali i na nim wykonywać operacje odczytu oraz zapisu. Kolejną czynnością jaką należy wykonać jest dostarczenie systemowi informacji, że pod konkretnym adresem znajduje się czujnik i jest on uważany za urządzenie typu \emph{slave}, czyli typu podrzędnego - reaguje na komendy mikrokomputera. Następnie należy odczytać z pamięci EEPROM czujnika dane kalibracyjne, które zostają później wykorzystane do przeliczenia poprawnych wartości pomiarów.
 
-Specyfikacja czujnika jasno określa kolejne kroki, jakie należy wykonać, aby przejść od odczytania danych kalibracyjnych do wyznaczenia pomiarów. Są to specjalnie stworzone wzory, które z wartości bajtów otrzymanych z czujnika zwracają potrzebne dane.
+Specyfikacja czujnika jasno określa kolejne kroki, jakie należy wykonać, aby przejść od odczytania danych kalibracyjnych do wyznaczenia wartości pomiarów. Są to specjalnie stworzone wzory, które z wartości bajtów otrzymanych z czujnika zwracają potrzebne dane.
 
 Diagram przedstawiony na rysunku \ref{fig:diagram_bmp085} pokazuje algorytm odczytu pomiarów czujnika BMP085.
 

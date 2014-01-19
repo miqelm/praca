@@ -1,10 +1,10 @@
 \chapter{Czujnik wilgotności DHT-22}
 \section*{Opis}
-DHT-22 jest cyfrowym oraz fabrycznie skalibrowanym czujnikiem względnej wilgotności i~temperatury. Został stworzony w oparciu o 8 bitowy mikrokontroler, do którego podłączone są sensory. Małe rozmiary, stabliność pomiarowa, możliwość zainstalowania czujnika na duże odległości oraz niewielki pobór energii czyni go bardzo dobrym rozwiązaniem, nawet w ciężkim warunkach atmosferycznych.
+DHT-22 jest cyfrowym oraz fabrycznie skalibrowanym czujnikiem względnej wilgotności i~temperatury. Został zbudowany w oparciu o 8 bitowy mikrokontroler, do którego podłączone są sensory. Małe rozmiary, stabliność pomiarowa, możliwość zainstalowania czujnika na duże odległości oraz niewielki pobór energii czyni go bardzo dobrym rozwiązaniem, nawet w ciężkich warunkach atmosferycznych.
 
-Czujnik posiada swój własny sposób uzyskiwania pomiarów. Jest on podobny do magistrali szeregowej o nazwie 1-Wire. Do prawidłowego działania urządzenia potrzebne jest zasilanie, linia danych, poprzez która następuje komunikacja oraz uziemienie. Należy również podłączyć do linii danych oraz zasilania rezystor podciągający o oporze około 3,3 k$\Omega$.
+Czujnik posiada swój własny sposób uzyskiwania pomiarów. Jest on podobny do magistrali szeregowej o nazwie 1-Wire. Do prawidłowego działania urządzenia potrzebne są dwa przewody zasilania oraz linia danych, poprzez którą następuje komunikacja. Należy również podłączyć do linii danych oraz zasilania rezystor podciągający o oporze około 3,3 k$\Omega$.
 \section*{Dane charakterystyczne}
-Jak podaje specyfikacja czujnika, może być on zasilany napięciem od 3,3 do 6 V, posiada następujące zdolności pomiarowe: wilgotność w zakresie 0 do 100 \% (z dokładnością +-2\%) oraz temperatury od -40 do 80 stopni Celsjusza (+-0,5 stopnia).
+Jak podaje specyfikacja czujnika, może być on zasilany napięciem od 3,3 do 6 V. Posiada on następujące parametry: zakres mierzonej wilgotności od 0 do 100 \% (z dokładnością +-2\%) oraz temperatury od -40 do 80 stopni Celsjusza (z dokładnością +-0,5 stopnia).
 
 Wygląd czujnika został przedstawiony na poniższym zdjęciu:
 \begin{figure}[h]
@@ -23,9 +23,9 @@ Zgodnie ze specyfikacją, załączoną do DHT-22, linia danych jest wolna, jeże
 \end{figure}
 Po zgłoszeniu swojej obecności w układzie, czujnik zaczyna wysyłać 40 bitów danych, pierwsze 16 bitów odpowiada za ciśnienie, następne 16 to temperatura oraz końcowe 8 bitów służy jako suma kontrolna.
 
-Aby przekonwertować odebrane dane na wskazania czujnika, należy obie liczby 16-bitowe, odpowiadające wilgotności oraz temperaturze, podzielić przez 10. W ten sposób otrzymujemy pomiary z dokładnością do jednego miejsca po przecinku. Po odebraniu danych należy przede wszystkim sprawdzić, czy to co zostało otrzymane jest prawidłowe. Należy pierwsze 4 bajty dodać do siebie oraz sprawdzić, czy 8 młodszych bitów tej wartości są równe ostatniemu odebranemu bajtowi. Jeżeli tak, procedura odebrania została zakończona sukcesem. W przeciwnym wypadku należy spróbować ponownie pobrać dane z czujnika. Próby odczytu należy wykonywać do momentu przekroczenia maksymalnej liczby prób, przez co można uniknąć nieskończonym próbom odczytu.
+Aby przekonwertować odebrane dane na wskazania czujnika, należy obie liczby 16-bitowe, odpowiadające wilgotności oraz temperaturze, podzielić przez 10. W ten sposób otrzymujemy pomiary z dokładnością do jednego miejsca po przecinku. Po odebraniu danych należy przede wszystkim sprawdzić, czy to co zostało otrzymane jest prawidłowe. Należy pierwsze 4 bajty dodać do siebie oraz sprawdzić, czy 8 młodszych bitów tej wartości są równe ostatniemu odebranemu bajtowi. Jeżeli tak, procedura odebrania została zakończona sukcesem. W przeciwnym wypadku należy spróbować ponownie pobrać dane z czujnika. Próby odczytu należy wykonywać do momentu przekroczenia maksymalnej ich liczby, przez co można uniknąć nieskończonej liczby prób odczytu.
 
-Sposób kodowania informacji na linii danych przez DHT-22 jest następujący: każda wartość logiczna (0 oraz 1) jest reprezentowana przez podpięcie linii do zasilania na ustaloną chwilę czasową. Bit o wartości 0 jest wysyłany jako wysoki poziom przez okres 26-28 $\mu$s, natomiast czas trwania sygnału wysokiego dla bitu 1 wynosci 70 $\mu$s. Pomiędzy nadaniem odpowiedniego bitu, występuje przerwa - podłączenie linii danych do uziemienia na około 50 $\mu$s.
+Sposób kodowania informacji na linii danych przez DHT-22 jest następujący: każda wartość logiczna (0 oraz 1) jest reprezentowana przez podpięcie linii do zasilania na ustaloną chwilę czasową. Bit o wartości 0 jest wysyłany jako wysoki poziom przez okres 26-28 $\mu$s, natomiast czas trwania sygnału wysokiego dla bitu 1 wynosci 70 $\mu$s. Pomiędzy nadaniem odpowiedniego bitu, występuje przerwa - podłączenie linii danych do poziomu masy na około 50 $\mu$s.
 
 Przebiegi poniżej pokazują wysyłanie danych:
 \begin{figure}[h]
@@ -47,13 +47,13 @@ Wysyłanie danych jest zakończone, jeżeli linia danych jest podłączona do za
 \section*{Algorytm odczytu pomiarów}
 Podczas odczytywania danych bardzo ważne są czasy występowania odpowiednich wartości logicznych. Błędna analiza czasu skutkuje złym zinterpretowaniem danych, co prowadzi do sfałszowania wyników.
 
-Algorytm zastosowany przy tworzeniu projektu inżynierskiego jest bardzo prosty. Polega on na odczytywaniu przy każdej możliwości stanu linii danych oraz zliczaniu ilości wystąpień stanu wysokiego, gdyż tylko ten koduje wysyłane wartości z czujnika.
+Algorytm zastosowany przy tworzeniu pracy jest bardzo prosty. Polega on na odczytywaniu przy każdej możliwości stanu linii danych oraz zliczaniu liczby wystąpień stanu wysokiego, gdyż tylko ten koduje wysyłane wartości z czujnika.
 
 Linia danych jest próbkowana do momentu odczytania 40 bitów. Jest ona ustawiana wówczas w stan wysoki, czujnik przechodzi w stan spoczynku. Po zakończeniu odczytu następuje analiza przetworzonych danych.
 
-Ilości wystąpień każdego stanu wysokiego podlegają binaryzacji, czyli procesowi podziału na dwa zbiory. Zadaniem tej funkcjonalności jest znalezienie odpowiedniej wartości granicznej, takiej która jednoznacznie wyznacza ile razy musiał być spróbkowany sygnał na linii danych, aby został on zinterpretowany jako bit $"1"$ lub $"0"$. Zostało to zaimplementowane poprzez znalezienie minimalnej i maksymalnej wartości ilości wystąpień oraz wyliczniu średniej tych dwóch liczb, wynik tego działania był wartością progową przy binaryzacji.
+Liczba wystąpień każdego stanu wysokiego podlega procesowi podziału na dwa zbiory. Zadaniem tej funkcjonalności jest znalezienie odpowiedniej wartości granicznej, takiej która jednoznacznie określa ile razy musiał być spróbkowany sygnał na linii danych, aby został on zinterpretowany jako bit $"1"$ lub $"0"$. Zostało to zaimplementowane poprzez znalezienie minimalnej i maksymalnej wartości liczby wystąpień oraz wyliczniu średniej tych dwóch liczb, wynik tego działania był wartością progową przy dzieleniu na dwa zbiory, czyli binaryzacji.
 
-Po wyliczeniu progu binaryzacji, ilości wystąpień zostały poddane porównaniu z nią. Jeżeli ilość wystąpień była większa od progu, oznaczało to bit "1", w przeciwnym wypadku, było to kodowane jako "0".
+Po wyliczeniu progu binaryzacji, liczba wystąpień została poddana porównaniu z nią, jeżeli była większa od progu, oznaczało to bit "1", w przeciwnym wypadku, było to kodowane jako "0".
 
 Diagram pokazany na rysunku \ref{fig:diagram_dht22} przedstawia schemat blokowy algorytmu odczytu danych z czujnika DHT-22.
 \begin{figure}[h]

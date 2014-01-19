@@ -13,7 +13,7 @@ Kod programu oraz obsługi stacji pogody, zaimplementowanej na mikrokontrolerze 
 \label{fig:eclipse}
 \end{figure}
 
-Po rozpakowaniu gotowego środowiska oraz jego uruchomieniu można już zacząć pracę z mikrokontrolerem, wystarczy jeszcze dokonać parę zabiegów, aby czas od zbudowania projektu, do jego uruchomienia na BeagleBone'ie był jak najkrótszy. W celu uzyskania jak najwygodniejszej konfiguracji, Eclipse został uruchomiony na systemie operacyjnym Ubuntu, na którym były przechowywane wszystkie źródła. Dzięki odpowiedniemu dodatkowi do Eclipse'a - Remote System Explorer istnieje możliwość tworzenia programu na komputerze, jego cross-kompilacji do aplikacji wykonywalnej oraz uruchomienia gotowego pliku binarnego na mikrokontrolerze. Dzieje się to dzięki wspomnianemu wcześniej protokołowi SSH.
+Po rozpakowaniu gotowego środowiska oraz jego uruchomieniu można już zacząć pracę z mikrokontrolerem, wystarczy jeszcze dokonać parę zabiegów, aby czas od zbudowania projektu, do jego uruchomienia na BeagleBone'ie był jak najkrótszy. W celu uzyskania jak najwygodniejszej konfiguracji, Eclipse został uruchomiony w systemie operacyjnym Ubuntu, w którym były przechowywane wszystkie źródła. Dzięki odpowiedniemu dodatkowi do Eclipse'a - Remote System Explorer istnieje możliwość tworzenia programu na komputerze, jego cross-kompilacji do aplikacji wykonywalnej oraz uruchomienia gotowego pliku binarnego na mikrokontrolerze. Dzieje się to dzięki wspomnianemu wcześniej protokołowi SSH.
 
 Aby stworzyć nowy projekt należy kliknąć File->New->C Project (może być również C++), pojawi się okno pokazane na rysunku \ref{fig:eclipse_new}:
 
@@ -44,7 +44,7 @@ W podobny sposób należy wypełnić również pola Command w zakładkach Cross 
 Tak przygotowany projekt wraz z zainstalowanym cross-kompilatorem umożliwia użytkownikowi bezproblemowe skompilowanie całego projektu do jednego pliku wykonywalnego. Otrzymany plik binarny należy przy użyciu protokołu SSH przesłać do BeagleBone'a i tam go uruchomić.
 
 \section{Używanie bibliotek Linux'a}
-System Linux w swoim jądrze posiada zaimplementowaną ogromną ilość przydatnych funkcji. Przy tworzeniu systemu pomiarów warunków meteorologicznych użyta została biblioteka funkcji do obsługi magistrali  $\mathrm{I^{2}C}$.
+System Linux w swoim jądrze posiada zaimplementowaną ogromną liczbę przydatnych funkcji. Przy tworzeniu systemu pomiarów warunków meteorologicznych użyta została biblioteka funkcji do obsługi magistrali  $\mathrm{I^{2}C}$.
 
 Funkcje te znacznie ułatwiły odczyt i zapis do czujnika BMP085, który działa tylko i wyłącznie w wymienionym poniżej sposobie komunikacji. Lista funkcji użytych w tworzeniu projektu:
 

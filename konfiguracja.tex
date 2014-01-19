@@ -23,6 +23,8 @@ Składa się ona z sześciu kolumn:
 
 Każda kolumna z pomiarami jest typem float (zmiennoprzecinkowa liczba).
 
+Dodatkową tabelą w bazie danych jest tabela o nazwie "weather\_config". Zawarty jest w niej okres oczekiwania pomiędzy kolejnymi pomiarami.
+
 \section{Strona internetowa z wynikami pomiarów}
 Interfejs użytkownika został stworzony jako strona internetowa w technologii PHP. Jest to język tworzenia dynamicznych stron WWW, nietrudny i wygodny w użytkowaniu. Pozwala również na połączenie z bazą danych i pobieraniem oraz wstawianiem do niej danych.
 
@@ -30,7 +32,7 @@ Strona internetowa, która została stworzona specjalnie do wizualizacji wynikó
 
 Główną jego częścią są ostatnie wskazania z czujników. Poniżej tych znajdują się wykresy historii pomiarów każdego parametru. Stworzone są dwa wykresy, na pierwszym porównane są ze sobą wskazania temperatur z obu czujników, natomiast na drugim wyświetlana jest wilgotoność powietrza oraz ciśnienie atmosferyczne.
 
-Użytkownik posiada, wprost ze strony, możliwość zmiany odstępu czasu jaki ma następować pomiędzy kolejnymi badaniami warunków meteorologicznych. Udostępniona została również funkcjonalność dowolnego ustawiania zakresu dat, dla których mają zostać wyświetlone pomiary w postaci wykresu. Użytkownik sam może decydować, z kiedy chce obserwować pomiary.
+Użytkownik posiada, wprost ze strony, możliwość zmiany odstępu czasu jaki ma następować pomiędzy kolejnymi badaniami warunków meteorologicznych. Udostępniona została również funkcjonalność dowolnego ustawiania zakresu dat, dla których mają zostać wyświetlone pomiary w postaci wykresu. Użytkownik sam może decydować o okresie, w którym chce obserwować pomiary.
 \begin{figure}[h!]
 \centering
 \includegraphics[scale=0.95]{strona}

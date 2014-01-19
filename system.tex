@@ -10,7 +10,7 @@ Układ pomiarowy składa się z wcześniej przedstawionych urządzeń:
 \item czujnik wilgotności i temperatury DHT-22
 \end{enumerate}
 
-Kolejnym krokiem przy tworzeniu systemu pomiarów warunków środowiskowych i meteorologicznych jest poprawne podłączenie czujników do mikrokomputera, aby móc zbierać dane. Wykorzystując tabelę PINów, zainstalowanych w mikrokomputerze BeagleBone Black, podpięto czujniki według poniższej instrukcji:
+Kolejnym krokiem przy tworzeniu systemu pomiarów warunków środowiskowych i meteorologicznych jest poprawne podłączenie czujników do mikrokomputera, aby móc zbierać dane. Wykorzystując tabelę PINów, zainstalowanych w mikrokomputerze BeagleBone Black, dołączono czujniki według poniższej instrukcji:
 
 \textbf{Czujnik BMP085:}
 \begin{itemize}
@@ -40,10 +40,8 @@ Kolejnym krokiem przy tworzeniu systemu pomiarów warunków środowiskowych i me
 \label{fig:uklad}
 \end{figure}
 
-Sposób poprawnego podpięcia układu został również zamieszczony w formie rysunku (rys. \ref{fig:uklad}).
+Sposób poprawnego dołączenia układu został również zamieszczony w formie rysunku (rys. \ref{fig:uklad}).
 
 Cały układ pomiarowy został połączony ze sobą przy użyciu płytki stykowej. Jest to najlepsze rozwiązanie, jeżeli potrzebne jest tymczasowe rozwiązanie. Takie połączenia można dowolnie i w każdej chwili konfigurować, bez tworzenia nowej płytki drukowanej.
 
-Docelowo planowane jest stworzenie płytki drukowanej w formie nakładki na BeagleBone'a, która idealnie będzie pasować do pinów wyprowadzonych z mikrokomputera.
-
-Wadami tymczasowego rozwiązania wykorzysującego płytkę stykową jest możliwość zabrudzenia się otworów, co może spowodować wzrost oporu, a nawet brak łączności. Kolejną niedoskonałością jest łatwość przypadkowego rozpięcia układu, które często prowadzi do błędnych pomiarów.
+Docelowo planowane jest stworzenie płytki drukowanej w formie nakładki na BeagleBone'a, która będzie pasować do pinów wyprowadzonych z mikrokomputera.

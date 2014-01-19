@@ -8,7 +8,7 @@
 % 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\message{*** [aghdpl.cls] ---  (MSz, GJN)  v2.0 <6.01.2014>  ***}       
+\message{*** [aghdpl.cls] ---  (MSz, GJN)  v2.0 <19.11.2013>  ***}       
 
 \newif\ifpdflatex\pdflatexfalse
 \NeedsTeXFormat{LaTeX2e} % 
@@ -35,17 +35,12 @@
 \def\shortauthor#1    {\gdef\@shortauthor{#1}}
 \def\titlePL#1        {\gdef\@titlePL{#1}}
 \def\titleEN#1        {\gdef\@titleEN{#1}}
-\def\facultyPL#1      {\gdef\@facultyPL{#1}}
-\def\facultyEN#1      {\gdef\@facultyEN{#1}}
-\def\thesistypePL#1   {\gdef\@thesistypePL{#1}}
-\def\thesistypeEN#1   {\gdef\@thesistypeEN{#1}}
-\def\supervisorPL#1   {\gdef\@supervisorPL{#1}}
-\def\supervisorEN#1   {\gdef\@supervisorEN{#1}}
+\def\faculty#1      {\gdef\@faculty{#1}}
+\def\thesistype#1   {\gdef\@thesistype{#1}}
+\def\supervisor#1   {\gdef\@supervisor{#1}}
 \def\acknowledgements#1   {\gdef\@acknowledgements{#1}}
-\def\departmentPL#1   {\gdef\@departmentPL{#1}}
-\def\departmentEN#1   {\gdef\@departmentEN{#1}}
-\def\degreeprogrammePL#1 {\gdef\@degreeprogrammePL{#1}}
-\def\degreeprogrammeEN#1 {\gdef\@degreeprogrammeEN{#1}}
+\def\department#1   {\gdef\@department{#1}}
+\def\degreeprogramme#1 {\gdef\@degreeprogramme{#1}}
 
 
 %\bibliographystyle{abbrv}
@@ -55,28 +50,30 @@
 %------------------------------------------------------------------------------
 
 
-\def\thesisheadersPL{
+\def\thesisheaders{
 \fancyfoot[LE,RO]{\small \@shortauthor\quad\textit{\@shorttitlePL}}
 }
 
-\def\thesistablePL{
+\def\thesistable{
 \begin{tabular}{p{45mm}l}
 Autor: & {\itshape \@author}\\[-1mm]
-Kierunek studiów: & {\itshape \@degreeprogrammePL}\\[-1mm]
-Opiekun pracy: & {\itshape \@supervisorPL}\\
+Kierunek studiów: & {\itshape \@degreeprogramme}\\[-1mm]
+Opiekun pracy: & {\itshape \@supervisor}\\
 \end{tabular}
 }
 
-\def\thesisheadersEN{
+\DeclareOption{en}{
+\def\thesisheaders{
 \fancyfoot[LE,RO]{\small \@shortauthor\quad\textit{\@shorttitleEN}}
 }
 
-\def\thesistableEN{
+\def\thesistable{
 \begin{tabular}{p{45mm}l}
 Author: & {\itshape \@author}\\[-1mm]
-Degree programme: & {\itshape \@degreeprogrammeEN}\\[-1mm]
-Supervisor: & {\itshape \@supervisorEN}\\
+Degree programme: & {\itshape \@degreeprogramme}\\[-1mm]
+Supervisor: & {\itshape \@supervisor}\\
 \end{tabular}
+}
 }
 
 \ProcessOptions
@@ -86,7 +83,7 @@ Supervisor: & {\itshape \@supervisorEN}\\
 \newpage \titlepage 
 
 \begin{center}
-\vspace*{1.2cm}
+\vspace*{1.43cm}
 
 \includegraphics[scale=0.6]{agh}
 
@@ -96,73 +93,39 @@ Supervisor: & {\itshape \@supervisorEN}\\
 
 \vspace*{1mm}
 
-{\small\bfseries \MakeUppercase{\@facultyPL}}}
+{\small\bfseries \MakeUppercase{\@faculty}}}
 \vspace*{3mm}
 
-{\small{\MakeUppercase{\@departmentPL}}}
+{\small{\MakeUppercase{\@department}}}
 \vspace*{12mm}
 
-{\sffamily\Large \@thesistypePL}
-\vspace*{20mm}
+{\sffamily\Large \@thesistype}
+\vspace*{9mm}
 
 {\sffamily\Large\itshape \@titlePL}
-\vspace*{20mm}
+\vspace*{1mm}
 
+{\sffamily\Large\itshape \@titleEN}
+\vspace*{25mm}
 \end{center}
 
 \noindent
 {\sffamily
-\thesistablePL
+\thesistable
 }
 
-\vspace*{25mm}
+\vspace*{17mm}
 
-\centerline{\small\sffamily Krak\'{o}w, 2014}
+\centerline{\small\sffamily Krak\'{o}w, \@date}
 
 \clearpage \titlepage 
 
 {~~}\vspace{20mm}
 
-{\large\itshape O\'swiadczam, \'swiadomy odpowiedzialno\'sci karnej za po\'swiadczenie nieprawdy, \.ze \mbox{niniejsz\k{a}} prac\k{e} dyplomow\k{a} wykona\l{}em osobi\'scie i samodzielnie, i nie korzysta\l{}em ze \'zr\'ode\l{} innych ni\.z wymienione w pracy.}
+{\large\itshape O\'swiadczam, \'swiadomy(-a) odpowiedzialno\'sci karnej za po\'swiadczenie nieprawdy, \.ze \mbox{niniejsz\k{a}} prac\k{e} dyplomow\k{a} wykona\l{}em(-am) osobi\'scie i samodzielnie i nie korzysta\l{}em(-am) ze \'zr\'ode\l{} innych ni\.z wymienione w pracy.}
 
 
 \clearpage \titlepage
-
-\begin{center}
-\vspace*{1.2cm}
-
-\includegraphics[scale=0.6]{agh}
-
-\vspace*{2mm}
-
-{\sffamily{\large{\bfseries{\scshape AGH University of Science and Technology\protect\\[-1mm] in Krakow}}}
-
-\vspace*{1mm}
-
-{\small\bfseries \MakeUppercase{\@facultyEN}}}
-\vspace*{3mm}
-
-{\small{\MakeUppercase{\@departmentEN}}}
-\vspace*{12mm}
-
-{\sffamily\Large \@thesistypeEN}
-\vspace*{20mm}
-
-{\sffamily\Large\itshape \@titleEN}
-\vspace*{20mm}
-
-\end{center}
-
-\noindent
-{\sffamily
-\thesistableEN
-}
-
-\vspace*{25mm}
-
-\centerline{\small\sffamily Krak\'{o}w, 2014}
-
-\clearpage \titlepage 
 
 \vspace*{15cm} \vfill
 \begin{flushright} 
@@ -190,7 +153,7 @@ Supervisor: & {\itshape \@supervisorEN}\\
 %\fancyhead[R]{\bfseries \thepage}
 \fancyhead[RO,LE]{\bfseries \thepage}
 
-\thesisheadersPL
+\thesisheaders
 
 \frenchspacing
 \sloppy 
