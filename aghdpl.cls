@@ -136,6 +136,11 @@ Supervisor: & {\itshape \@supervisor}\\
 
 \clearpage
 
+\newpage
+\thispagestyle{empty}
+\mbox{}
+\clearpage
+
 \setcounter{page}{5}
 
 }
